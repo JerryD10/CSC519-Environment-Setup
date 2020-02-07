@@ -1,0 +1,29 @@
+setup:
+  local: {}
+  git: https://github.com/JerryD10/CSC519-Environment-Setup
+  # Target VMs created as part of tutorial. 
+  # Some commands executed within these machines. `target=ansible-srv`
+  targets:
+    - ssh: 
+        name: devops
+        host: vagrant@192.168.33.10
+        privateKey: ~/.bakerx/insecure_private_key
+  clean: |
+    bakerx delete vm devops
+  verify: |
+    opunit verify -i opunit_inventory.yml
+README.md:
+  steps:
+    - selectAndRun: "Create the Virtual Machine."
+    - selectAndRun: "Inside the machine, install nodejs and npm:"
+      target: devops
+    - selectAndRun: "Inside the machine, install nodejs and npm:"
+      target: devops
+    - selectAndRun: "Next, install virtualbox:"
+      target: devops
+    - selectAndRun: "Now install ansible:"
+      target: devops
+    - selectAndRun: "Lastly, we need bakerx and opunit to be installed:"
+      target: devops
+    - selectAndRun: "Verify installation was successful by running opunit."
+      target: devops

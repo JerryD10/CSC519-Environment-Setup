@@ -1,0 +1,21 @@
+- group:
+   description: "Essential development tools"
+   checks:
+     - version:
+         cmd: nodejs --version
+         range: ^12.5.x
+     - version:
+         cmd: npm --version
+         range: ^6.7.x
+     - version:
+         cmd: vboxmanage --version
+         range: ^5.4.x
+     - version:
+         cmd: bakerx --version
+         range: ^0.6.7
+     - version:
+         cmd: opunit --version
+         range: ^0.4.4
+     - version:
+         cmd: ansible --version
+         range: ^2.7.x
