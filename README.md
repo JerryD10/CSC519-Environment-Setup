@@ -18,7 +18,7 @@ Inside the machine, install nodejs and npm:
 ```bash
 sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get update
-sudo apt-get install nodejs
+sudo apt-get install nodejs -y
 ```
 
 Next, install virtualbox:
@@ -29,7 +29,7 @@ sudo apt upgrade
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 sudo apt update
-sudo apt install virtualbox-6.0
+sudo apt install virtualbox-6.0 -y
 ```
 
 Now install ansible:
@@ -43,7 +43,7 @@ sudo apt-get install ansible -y
 Lastly, we need bakerx and opunit to be installed:
 
 ```bash
-sudo npm install opunit -g 
+sudo npm install opunit -g
 sudo npm install ottomatica/bakerx -g
 ```
 
