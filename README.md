@@ -24,8 +24,6 @@ sudo apt-get install nodejs -y
 Next, install virtualbox:
 
 ```bash
-sudo apt update
-sudo apt upgrade
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 sudo apt update
@@ -45,12 +43,6 @@ Lastly, we need bakerx and opunit to be installed:
 ```bash
 sudo npm install opunit -g
 sudo npm install ottomatica/bakerx -g
-```
-
-Verify installation was successful by running opunit.
-
-```
-$ opunit verify vagrant@192.168.33.10 --ssh_key ~/.bakerx/insecure_private_key -c test/devops.yml  
 ```
 
 ## Completing workshop checks
