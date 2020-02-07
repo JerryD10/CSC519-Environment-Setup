@@ -26,4 +26,3 @@ README.md:
     - selectAndRun: "Lastly, we need bakerx and opunit to be installed:"
       target: devops
     - selectAndRun: "You should be able to verify all checks pass:"
-      target: devops
