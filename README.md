@@ -10,15 +10,15 @@
 Create the Virtual Machine.
 
 ```bash
-bakerx run devops bionic --ip 192.168.33.10
+bakerx run devops bionic --ip 192.168.33.10 &>/dev/null
 ```
 
 Inside the machine, install nodejs and npm:
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get update
-sudo apt-get install nodejs -y
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - &>/dev/null
+sudo apt-get update &>/dev/null
+sudo apt-get install nodejs -y &>/dev/null
 ```
 
 Next, install virtualbox:
@@ -27,16 +27,16 @@ Next, install virtualbox:
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib"
-sudo apt update
-sudo apt install virtualbox-6.0 -y
+sudo apt update &>/dev/null
+sudo apt install virtualbox-6.0 -y &>/dev/null
 ```
 
 Now install ansible:
 
 ```bash
-sudo add-apt-repository ppa:ansible/ansible -y
-sudo apt-get update
-sudo apt-get install ansible -y
+sudo add-apt-repository ppa:ansible/ansible -y &>/dev/null
+sudo apt-get update &>/dev/null
+sudo apt-get install ansible -y &>/dev/null
 ```
 
 Lastly, we need bakerx and opunit to be installed:
