@@ -10,7 +10,7 @@
 Create the Virtual Machine.
 
 ```bash
-bakerx run devops bionic --ip 192.168.33.10 &>/dev/null
+bakerx run devops bionic --ip 192.168.33.10
 ```
 
 Inside the machine, install nodejs and npm:

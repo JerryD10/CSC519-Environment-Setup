@@ -26,45 +26,18 @@
 </ul>
 <h2 id="creating-your-machine">Creating your machine</h2>
 <p>Create the Virtual Machine.</p>
-<pre class="failing"><span>&#x10102; </span><code>bakerx run devops bionic --ip <span class="hljs-number">192.168</span><span class="hljs-number">.33</span><span class="hljs-number">.10</span></code><br><br><span>&#xFE0F;&#x2755;error: - Waiting for VM network to initialize... (can take a few seconds or minutes on slower hosts).
-(node:14916) UnhandledPromiseRejectionWarning: Error: EISDIR: illegal operation on a directory, read
-(node:14916) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
-(node:14916) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-</span><span> exit code: NaN</span><span> command output:<br> Creating devops using vbox...
-Searching between ports 2002 and 2999 for ssh on localhost for this vm.
-Excluding the following ports already used by VirtualBox VMS: 6022,2002,2222,56243,2222,2222,2222,2200,2200,2222,8000,2003,2004,2005,2006
-Port 2007 is available for ssh on localhost!
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; import &quot;C:\Users\Jerry\.bakerx\.persist\images\bionic\box.ovf&quot; --vsys 0 --vmname devops
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm devops --boot1 disk
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm devops --biosbootmenu disabled
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm &quot;devops&quot; --memory 1024 --cpus 1
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm devops  --uart1 0x3f8 4 --uartmode1 disconnected
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm devops --nic1 nat
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm devops --nictype1 virtio
-Using 192.168.33.1 in VirtualBox Host-Only Ethernet Adapter #4
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; hostonlyif ipconfig &quot;VirtualBox Host-Only Ethernet Adapter #4&quot; --ip 192.168.33.1
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm &quot;devops&quot; --hostonlyadapter2 &quot;VirtualBox Host-Only Ethernet Adapter #4&quot;
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm &quot;devops&quot; --nic2 hostonly
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm &quot;devops&quot; --nictype2 virtio
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; modifyvm devops --natpf1 &quot;guestssh,tcp,,2007,,22&quot;
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; startvm devops --type emergencystop
-Executing &quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; startvm devops --type headless
-
-received from ssh server:  SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
-
-The VM is now ready. You can run this ssh command to connect to it.
-ssh -i &quot;C:/Users/Jerry/.bakerx/insecure_private_key&quot; vagrant@127.0.0.1 -p 2007 -o StrictHostKeyChecking=no</span></pre><p>Inside the machine, install nodejs and npm:</p>
-<pre class="passing"><span>&#x2713; </span><span>&#x2713; </span><code>sudo curl -sL http<span class="hljs-variable">s:</span>//<span class="hljs-keyword">deb</span>.nodesource.<span class="hljs-keyword">com</span>/setup_12.<span class="hljs-keyword">x</span> | sudo -E bash -
-sudo apt-<span class="hljs-built_in">get</span> <span class="hljs-keyword">update</span>
-sudo apt-<span class="hljs-built_in">get</span> install nodejs -<span class="hljs-keyword">y</span></code></pre><p>Next, install virtualbox:</p>
+<pre class="passing"><span>&#x2713; </span><code>bakerx run devops bionic --ip <span class="hljs-number">192.168</span><span class="hljs-number">.33</span><span class="hljs-number">.10</span> &amp;&gt;/dev/<span class="hljs-literal">null</span></code></pre><p>Inside the machine, install nodejs and npm:</p>
+<pre class="passing"><span>&#x2713; </span><span>&#x2713; </span><code>sudo curl -sL https:<span class="hljs-comment">//deb.nodesource.com/setup_12.x | sudo -E bash - &amp;&gt;/dev/null</span>
+sudo apt-<span class="hljs-built_in">get</span> <span class="hljs-keyword">update</span> &amp;&gt;/<span class="hljs-built_in">dev</span>/<span class="hljs-built_in">null</span>
+sudo apt-<span class="hljs-built_in">get</span> install nodejs -y &amp;&gt;/<span class="hljs-built_in">dev</span>/<span class="hljs-built_in">null</span></code></pre><p>Next, install virtualbox:</p>
 <pre class="passing"><span>&#x2713; </span><code>wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key<span class="hljs-built_in"> add </span>-
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key<span class="hljs-built_in"> add </span>-
 sudo<span class="hljs-built_in"> add-apt-repository </span><span class="hljs-string">&quot;deb http://download.virtualbox.org/virtualbox/debian bionic contrib&quot;</span>
-sudo apt update
-sudo apt install virtualbox-6.0 -y</code></pre><p>Now install ansible:</p>
-<pre class="passing"><span>&#x2713; </span><code>sudo<span class="hljs-built_in"> add-apt-repository </span>ppa:ansible/ansible -y
-sudo apt-get update
-sudo apt-get install ansible -y</code></pre><p>Lastly, we need bakerx and opunit to be installed:</p>
+sudo apt update &amp;&gt;/dev/null
+sudo apt install virtualbox-6.0 -y &amp;&gt;/dev/null</code></pre><p>Now install ansible:</p>
+<pre class="passing"><span>&#x2713; </span><code>sudo<span class="hljs-built_in"> add-apt-repository </span>ppa:ansible/ansible -y &amp;&gt;/dev/null
+sudo apt-get update &amp;&gt;/dev/null
+sudo apt-get install ansible -y &amp;&gt;/dev/null</code></pre><p>Lastly, we need bakerx and opunit to be installed:</p>
 <pre class="passing"><span>&#x2713; </span><code>sudo npm <span class="hljs-keyword">install</span> opunit -g
 sudo npm <span class="hljs-keyword">install</span> ottomatica/bakerx -g</code></pre><h2 id="completing-workshop-checks">Completing workshop checks</h2>
 <p>You should be able to verify all checks pass:</p>
